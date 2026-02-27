@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APSRTC Cargo Route Planner</title>
+<style>
+body{font-family:Arial;background:#0f172a;color:#fff;margin:0;padding:0}
+.container{max-width:900px;margin:auto;padding:20px}
+.card{background:#111827;padding:20px;border-radius:12px;margin-top:20px}
+input{width:100%;padding:12px;border-radius:8px;border:none;font-size:16px}
+button{margin-top:10px;padding:10px 16px;border:none;border-radius:8px;background:#22c55e;color:#000;font-weight:bold;cursor:pointer}
+.badge{padding:4px 8px;border-radius:6px;font-size:12px}
+.rank1{background:#22c55e;color:#000}
+.rank2{background:#eab308;color:#000}
+.rank3{background:#ef4444;color:#fff}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>APSRTC Cargo Route Planner</h1>
+<div class="card">
+<input id="search" placeholder="Enter destination (e.g., Visakhapatnam)" />
+<button onclick="searchRoute()">Search</button>
+<div id="result"></div>
+</div>
+</div>
+
+<script>
+function searchRoute(){
+  const dest=document.getElementById("search").value.toUpperCase();
+  const result=document.getElementById("result");
+  
+  if(dest.includes("VISAKHAPATNAM")){
+    result.innerHTML=`
+      <h3>Service: TRANSIT</h3>
+      <p><span class="badge rank1">BEST</span> JEEDIMETLA → RAJAMAHENDRAVARAM → VISAKHAPATNAM</p>
+      <p><span class="badge rank2">ALT</span> JEEDIMETLA → KAKINADA → VISAKHAPATNAM</p>
+      <p><span class="badge rank3">BACKUP</span> JEEDIMETLA → JANGAREDDYGUDEM → VISAKHAPATNAM</p>
+      <p><b>Cutoff:</b> Book 1 hour before bus time</p>
+    `;
+  } else if(dest.includes("ANAKAPALLI")){
+    result.innerHTML=`
+      <h3>Service: TRANSIT</h3>
+      <p><span class="badge rank1">BEST</span> JEEDIMETLA → RAJAMAHENDRAVARAM → VISAKHAPATNAM → ANAKAPALLI</p>
+      <p><span class="badge rank2">ALT</span> JEEDIMETLA → KAKINADA → VISAKHAPATNAM → ANAKAPALLI</p>
+      <p><span class="badge rank3">BACKUP</span> JEEDIMETLA → JANGAREDDYGUDEM → VISAKHAPATNAM → ANAKAPALLI</p>
+      <p><b>Cutoff:</b> Book 1 hour before bus time</p>
+    `;
+  } else {
+    result.innerHTML="<p>No route configured yet (demo build).</p>";
+  }
+}
+</script>
+</body>
+</html>
